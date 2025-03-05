@@ -1,30 +1,475 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pages List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eman Abid - Web Developer Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Eman Abid, a passionate Web Developer specializing in PHP, Laravel, JavaScript, and Bootstrap">
+
+
+    <!-- Bootstrap for Responsiveness Only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono|Kaushan+Script" rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
     <style>
-        a {
-            display: block;
-            margin: 10px;
+        :root {
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --text-light: #e0e0e0;
+            --text-muted: #828282;
+            --accent-primary: #4CAF50;
+            --accent-secondary: #2196F3;
+            --transition-speed: 0.3s;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+
+            50% {
+                transform: scale(1.05);
+            }
+
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        body {
+            /* font-family: 'Inter', sans-serif; */
+            font-family: 'Space Mono', monospace;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            perspective: 1px;
+        }
+
+
+        .header-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--bg-dark), var(--bg-darker));
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease infinite;
+            overflow: hidden;
+        }
+
+        .text-mute {
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+        }
+
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 15px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            background-image: url('images/Snap.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 4px solid var(--accent-primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform var(--transition-speed) ease;
+        }
+
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 28px;
+            text-decoration: none;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+        }
+
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+            transition: all var(--transition-speed) ease;
+        }
+
+
+        .social-links a:hover {
+            color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+
+        .social-links a:hover::after {
+            left: 0;
+            width: 100%;
+        }
+
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(76, 175, 80, 0.1));
+            transform: rotate(-45deg);
+            z-index: 1;
+        }
+
+
+        .skills-section {
+            background-color: var(--bg-darker);
+        }
+
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+
+        .skill-icon {
+            width: 80px;
+            filter: grayscale(30%) brightness(1.2);
+            transition: all var(--transition-speed) ease;
+            will-change: transform, filter;
+        }
+
+
+        .skill-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            filter: grayscale(0%) brightness(1.5);
+        }
+
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all var(--transition-speed) ease;
+            z-index: -1;
+        }
+
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-light);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            opacity: 0;
+            transition: all var(--transition-speed) ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 30px;
+            }
+
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+
+            .skill-icon {
+                width: 60px;
+            }
         }
     </style>
 </head>
 
+
 <body>
-    <h1>Pages List:</h1>
-    <a href="page1.html" target="_blank" rel="noopener noreferrer">page 1</a>
-    <br>
-    <a href="page2.html" target="_blank" rel="noopener noreferrer">page 2</a>
-    <br>
-    <a href="page3.html" target="_blank" rel="noopener noreferrer">page 3</a>
-    <br>
-    <a href="page4.html" target="_blank" rel="noopener noreferrer">page 4</a>
-    <br>
-    <a href="page5.html" target="_blank" rel="noopener noreferrer">page 5</a>
-    <br>
+    <!-- Header -->
+    <header class="header-container">
+        <div class="header-overlay"></div>
+        <div class="container header-content">
+            <div class="profile-image"></div>
+            <h1 class="display-4 mb-3">Eman Abid</h1>
+            <h3 class="text-mute">Web Developer</h3>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/eman-webdev" target="_blank"><i class="bi bi-linkedin"></i></a>
+                <a href="mailto:emanabid170@gmail.com"><i class="bi bi-envelope-at"></i></a>
+                <a href="https://behance.net/emanabid" target="_blank"><i class="bi bi-behance"></i></a>
+                <a href="https://g.dev/eman_23" target="_blank"><i class="bi bi-code-square"></i></a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li><strong>Name:</strong> Eman Abid</li>
+                        <li><strong>Email:</strong> emanabid170@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <h2>Hello!</h2>
+                    <p>I'm <b>Eman Abid</b>, a passionate and solution-driven Web Developer with over a year of
+                        professional experience in designing, developing, and maintaining dynamic, user-friendly web
+                        applications. I specialize in full-stack development, with expertise in PHP, Laravel,
+                        JavaScript, and Bootstrap, creating responsive and efficient solutions tailored to meet diverse
+                        business needs.</p>
+                    <div class="mt-3">
+                        <a href="mailto:emanabid170@gmail.com" class="cta-button me-2">Contact Me</a>
+                        <a href="https://drive.google.com/drive/folders/17EjW-Ze3216ZUp5VWVLJiyxfDZhVD7Bs?usp=sharing"
+                            class="cta-button" target="_blank">Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Skills</h2>
+            <div class="skills-container">
+                <img src="icons/html.svg" alt="HTML" class="skill-icon">
+                <img src="icons/css.svg" alt="CSS" class="skill-icon">
+                <img src="icons/js.svg" alt="JavaScript" class="skill-icon">
+                <img src="icons/jquery.svg" alt="jQuery" class="skill-icon">
+                <img src="icons/php.svg" alt="PHP" class="skill-icon">
+                <img src="icons/sql.svg" alt="SQL" class="skill-icon">
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2>Contact Me!</h2>
+            <p>Excited to start a coding journey together? Let's collaborate and turn your ideas into reality. Reach out
+                to me anytime!</p>
+            <a href="mailto:emanabid170@gmail.com" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center py-3">
+        <p>Thanks For Scrolling!</p>
+    </footer>
+
+
+
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+
+
+
+
+
+
+    <script>
+        // Advanced Scroll-Triggered Animations
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('.section');
+            const backToTopButton = document.querySelector('.back-to-top');
+
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+
+                if (sectionTop < windowHeight * 0.7) {
+                    section.classList.add('animate');
+                }
+            });
+
+
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+
+        // Smooth Scroll to Top with Enhanced Easing
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
+
 
 </html>
